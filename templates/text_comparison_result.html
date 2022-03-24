@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<center>
+<br>
+<h2>{{result['score']}}</h2>
+<br>
+<div>
+    {{result['data'] | safe}}
+</div>
+</center>
+{% endblock content %}

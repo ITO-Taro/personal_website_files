@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<center>
+    <div>
+        <h2>This features compares two text data and computes how similar the two are </h2>
+    </div>
+    <div>
+        <form method='POST' action='/text_comparison'>
+            <label for="resume_file">Upload Resume in TXT File:</label>
+            <input type='file' name='resume_file' />
+            <br><br>
+            <label for="job_description">Upload Job Description in TXT File:</label>
+            <input type='file' name='job_description' />
+            <br><br>
+            <input type='submit' />
+        </form>
+    </div>
+    <div style="color:red; font-size:30px">{{message}}</div>
+</center>
+
+{% endblock content %}
