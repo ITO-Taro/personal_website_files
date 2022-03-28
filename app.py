@@ -2,6 +2,9 @@ from models import *
 from api import *
 from flask import *
 import os
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 
 
 '''
@@ -16,6 +19,19 @@ SQLAlchemy().init_app(app)
 
 emp = EmpAnalysis(PATH)
 health = HealthCarePortal(PATH)
+
+# Base = declarative_base()
+
+# engine = create_engine("sqlite:///health_care_portal.db")
+
+# Base.metadata.bind = engine
+# Base.metadata.create_all(engine)
+# DBSession = sessionmaker(bind=engine)
+# session = DBSession()
+
+# MedCode(Base)
+# Employee(Base)
+# Transactions(Base)
 
 @app.route("/")
 def landing_page():
@@ -241,4 +257,5 @@ def text_comparison():
 
 
 if __name__ == "__main__":
+
     app.run(host="localhost", debug=True, port=5000)

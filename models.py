@@ -1,5 +1,4 @@
-from app import PATH
-from wsgiref.util import request_uri
+from django.db import models
 from flask import *
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
@@ -8,16 +7,13 @@ import math, os
 import numpy as np
 import pandas as pd
 
+
+PATH = "/Users/taro/projects/portfolio/Personal_Website_Code_Git"
 os.chdir(PATH+"/data")
 
 Base = declarative_base()
 
 engine = create_engine("sqlite:///health_care_portal.db")
-
-Base.metadata.bind = engine
-Base.metadata.create_all(engine)
-DBSession = sessionmaker(bind=engine)
-session = DBSession()
 
 class MedCode(Base):
     __tablename__ = 'med_codes'
@@ -136,4 +132,9 @@ class ANOVA(Stats):
     #     a = self.y_mean - b*self.x_mean
     #     res = a+b*x
     #     return 
-        
+
+
+Base.metadata.bind = engine
+Base.metadata.create_all(engine)
+DBSession = sessionmaker(bind=engine)
+session = DBSession()

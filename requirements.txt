@@ -10,6 +10,7 @@ appscript @ file:///opt/concourse/worker/volumes/live/00049ed6-6263-4a6e-72b9-9d
 argh==0.26.2
 argon2-cffi @ file:///opt/concourse/worker/volumes/live/38e8fb2b-1295-4bdf-4adf-b20acbe4d91b/volume/argon2-cffi_1607022498041/work
 arrow @ file:///opt/concourse/worker/volumes/live/1c202787-83f7-4b70-6d98-b40769f597f4/volume/arrow_1617737667847/work
+asgiref==3.5.0
 asn1crypto @ file:///tmp/build/80754af9/asn1crypto_1596577642040/work
 astroid==2.9.3
 astropy @ file:///opt/concourse/worker/volumes/live/dac790a5-ee97-4520-5b55-f2cc50d275e6/volume/astropy_1629829220593/work
@@ -65,6 +66,7 @@ defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 diff-match-patch @ file:///Users/ktietz/demo/mc3/conda-bld/diff-match-patch_1630511840874/work
 distlib==0.3.4
 distributed @ file:///opt/concourse/worker/volumes/live/34c9adba-e95e-473d-7a32-ecdf958a8844/volume/distributed_1635968220957/work
+Django==4.0.3
 docutils==0.18.1
 entrypoints==0.3
 et-xmlfile==1.1.0
@@ -240,6 +242,7 @@ sphinxcontrib-websupport @ file:///tmp/build/80754af9/sphinxcontrib-websupport_1
 spyder @ file:///opt/concourse/worker/volumes/live/5ce630f9-babe-4f53-755a-cd7324c300d9/volume/spyder_1636480249527/work
 spyder-kernels @ file:///opt/concourse/worker/volumes/live/72f0c5be-8b9e-43d2-67e5-f038915937d7/volume/spyder-kernels_1634236950410/work
 SQLAlchemy==1.4.27
+sqlparse==0.4.2
 statsmodels @ file:///opt/concourse/worker/volumes/live/237cf070-cf87-4ff8-6149-8213b5eb40a5/volume/statsmodels_1614023802257/work
 sympy @ file:///opt/concourse/worker/volumes/live/5ed26665-a223-4942-7dc1-66b2b3830ab1/volume/sympy_1635237064989/work
 tables @ file:///opt/concourse/worker/volumes/live/daa73f70-754b-4f28-73ce-6f96c40f4b9d/volume/pytables_1607975400838/work

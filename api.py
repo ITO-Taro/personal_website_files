@@ -1,4 +1,3 @@
-from app import PATH
 from flask import *
 from flask_sqlalchemy import SQLAlchemy
 from models import *
@@ -20,7 +19,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 Contains all functions used/called in emp_analysis_project.py (app file)
 '''
 # PATH = os.getcwd()+"/"
-# PATH = "/Users/taro/projects/Personal_Website_Code_Git"
+PATH = "/Users/taro/projects/portfolio/Personal_Website_Code_Git"
+os.chdir(PATH+"/data")
 app = Flask(__name__)
 app.config["sqlite:///health_care_portal.db"] = 'postgresql+psycopg2://login:pass@localhost/flask_app'
 db = SQLAlchemy(app)
@@ -634,6 +634,20 @@ class HealthCarePortal:
     def __init__(self, path):
         self.path = path+"/data"
         self.description = ProjectDescription.project_description(self.path+'/health_care_portal_description.txt')
+        # try:
+        #     self.__is_not_empty(MedCode)
+        # except:
+        #     self.med_code_table()
+
+        # try:
+        #     self.__is_not_empty(Employee)
+        # except:
+        #     self.emp_table()
+        
+        # try:
+        #     self.__is_not_empty(Transactions)
+        # except:
+        #     self.transactions_table()
         if not self.__is_empty(MedCode):
             self.med_code_table()
         if not self.__is_empty(Employee):
@@ -719,7 +733,7 @@ class HealthCarePortal:
         else:
             data = session.query(Employee).filter(Employee.last_name.like(f"%{input}%"))
             if data.first():
-                data = data.limit(self.search_limit).all()
+                data = data.limit(self.search_limit).all() if self.serch_limit else data.all()
                 res = f"{len(data)} record(s) found matching '{input}'"
                 return render_template("emp_search_last_result.html", data=data, result=res)
             else:
@@ -943,7 +957,7 @@ class HealthCarePortal:
         res['all_salary_pd'] = dict()
         res['charts'] = dict()
 
-        emp_info = self.__pd_data(path+"/data/patient_accounts.txt", False, ["emp_id", "title", "gender", "last_name", "first_name", "salary", "city", "state"])
+        emp_info = self.__pd_data(self.path+"/patient_accounts.txt", False, ["emp_id", "title", "gender", "last_name", "first_name", "salary", "city", "state"])
         for col in emp_info.columns:
             emp_info[col] = emp_info[col].apply(lambda x: "".join([i for i in x if ord(i.lower()) in range(97, 123) or ord(i) in range(48, 58) or i == "%" or i == " " or i == "-"]))
             if col == "salary":
@@ -1008,46 +1022,14 @@ class HealthCarePortal:
         df = df.fillna("")
         return df
 
-    def test(self):
-        genders = session.query(Employee.gender).distinct()
-        print(genders)
-
     def __is_empty(self, table):
         return session.query(table).first()
-        
-
-    # def calc_mean(self, var_x):
-    #     return sum(var_x)/len(var_x)
-
-    # def find_modes(self, var_x):
-    #     data, modes = {}, {}
-    #     var_x.sort()
-    #     cnt = 1
-    #     for n in range(1, len(var_x)):
-    #         if var_x[n] == var_x[n-1]:
-    #             cnt += 1
-    #         else:
-    #             data[var_x[n-1]] = cnt
-    #             cnt = 1
-    #     for k, v in data.items():
-    #         if v == max(data.values()) and v > 1:
-    #             modes[k] = v
-    #     return modes
-
-    # def find_median(self, var_x):
-    #     var_x.sort()
-    #     num = len(var_x)
-    #     res = 0
-    #     if num%2 == 0:
-    #         res = (var_x[int(num/2)]+var_x[int(num/2)-1])/2
-    #     else:
-    #         res = var_x[int((num-1)/2)]
-    #     return res
-
-
-    # def calc_SD(self, var_x):
-    #     cnt, avg = len(var_x), self.calc_mean(var_x)
-    #     return math.sqrt(sum([(i - avg)**2 for i in var_x])/(cnt-1))
+    
+    def __is_not_empty(self, table):
+        if session.query(table).first():
+            return True
+        return False
+    
 
     def pd_data(self, file, indx, columns):
         df = pd.read_csv(file, index_col=indx, names=columns)
