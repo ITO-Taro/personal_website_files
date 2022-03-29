@@ -633,27 +633,14 @@ class HealthCarePortal:
     def __init__(self, path):
         self.path = path+"/data"
         self.description = ProjectDescription.project_description(self.path+'/health_care_portal_description.txt')
-        # try:
-        #     self.__is_not_empty(MedCode)
-        # except:
-        #     self.med_code_table()
 
-        # try:
-        #     self.__is_not_empty(Employee)
-        # except:
-        #     self.emp_table()
-        
-        # try:
-        #     self.__is_not_empty(Transactions)
-        # except:
-        #     self.transactions_table()
         if not self.__is_empty(MedCode):
             self.med_code_table()
         if not self.__is_empty(Employee):
             self.emp_table()
         if not self.__is_empty(Transactions):
             self.transactions_table()
-        self.search_limit = self.LIMIT
+
 
     def med_code_table(self):
         df = pd.read_excel(self.path+"/2021_medical_codes.xlsx", index_col=False, usecols=["CODE","DESCRIPTION","CATEGORY"])
@@ -732,7 +719,7 @@ class HealthCarePortal:
         else:
             data = session.query(Employee).filter(Employee.last_name.like(f"%{input}%"))
             if data.first():
-                data = data.limit(self.search_limit).all() if self.serch_limit else data.all()
+                data = data.limit(self.LIMIT).all() if self.LIMIT else data.all()
                 res = f"{len(data)} record(s) found matching '{input}'"
                 return render_template("emp_search_last_result.html", data=data, result=res)
             else:
