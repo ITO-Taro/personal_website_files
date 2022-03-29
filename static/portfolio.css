@@ -61,11 +61,11 @@
     flex-direction: column;
 }
 .bg-img#base{
-    background-image: url("header_img.jpeg");
+    background-image: url("");
 }
 .bg-img#salary-analysis{
     /* background-image: url("data_science.jpeg"); */
-    background-image: url("big_data2.jpeg");
+    background-image: url("");
 }
 
 

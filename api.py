@@ -18,8 +18,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 '''
 Contains all functions used/called in emp_analysis_project.py (app file)
 '''
-# PATH = os.getcwd()+"/"
-PATH = "/Users/taro/projects/portfolio/Personal_Website_Code_Git"
+PATH = os.getcwd()+"/"
 os.chdir(PATH+"/data")
 app = Flask(__name__)
 app.config["sqlite:///health_care_portal.db"] = 'postgresql+psycopg2://login:pass@localhost/flask_app'

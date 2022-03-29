@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 
-PATH = "/Users/taro/projects/portfolio/Personal_Website_Code_Git"
+PATH = "your_directory"
 os.chdir(PATH+"/data")
 
 Base = declarative_base()

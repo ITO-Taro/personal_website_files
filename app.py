@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 '''
 set PATH to your project directory
 '''
-PATH = "/Users/taro/projects/portfolio/Personal_Website_Code_Git"
+PATH = "your_directory"
 os.chdir(PATH)
 
 
@@ -254,6 +254,10 @@ def text_comparison():
     
     else:
         return render_template("text_comparison.html")
+
+@app.route("/underconstruction")
+def page_under_construction():
+    return render_template("underconstruction.html")
 
 
 if __name__ == "__main__":
